@@ -1,0 +1,38 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: laravel-service:hito3
+    container_name: laravel_app_hito3
+    restart: always
+    working_dir: /var/www
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www
+    networks:
+      - hito3-network
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db_hito3
+    restart: always
+    environment:
+      MYSQL_DATABASE: db_soporte
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: user_soporte
+      MYSQL_PASSWORD: password123
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - hito3-network
+
+volumes:
+  dbdata:
+
+networks:
+  hito3-network:
+    driver: bridge
