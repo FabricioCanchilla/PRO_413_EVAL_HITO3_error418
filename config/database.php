@@ -63,7 +63,20 @@ return [
                 Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-
+        // Conexion MySQL de destino - Integracion Rosmery
+        'destino' => [
+            'driver' => 'mysql',
+            'host' => env('DEST_DB_HOST', '127.0.0.1'),
+            'port' => env('DEST_DB_PORT', '3306'),
+            'database' => env('DEST_DB_DATABASE', ''),
+            'username' => env('DEST_DB_USERNAME', ''),
+            'password' => env('DEST_DB_PASSWORD', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
